@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>NDIS Construction — Deca Property Group</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@1&display=swap');
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --stone:    #F0EBE1;
+  --stone-2:  #E5DDD0;
+  --stone-3:  #D5CABА;
+  --white:    #FDFAF6;
+  --ink:      #1C1917;
+  --ink-2:    #252220;
+  --brown:    #4A3F35;
+  --gold:     #C4953A;
+  --gold-lt:  #D4A84A;
+  --mid:      #7A6F65;
+  --light:    #B0A898;
+  --display:  'Bebas Neue', sans-serif;
+  --serif:    'DM Serif Display', Georgia, serif;
+  --sans:     'DM Sans', sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--stone);color:var(--ink);overflow-x:hidden}
+::selection{background:var(--gold);color:var(--white)}
+img{display:block;max-width:100%}
+
+/* ── NAV ─────────────────────────────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:stretch;height:68px;
+  background:var(--ink);
+}
+.logo-anchor{text-decoration:none;display:flex;align-items:center;padding:0 2rem;background:#000;border-right:1px solid rgba(255,255,255,.08);flex-shrink:0}
+.logo-box{display:flex;flex-direction:column;align-items:flex-start;border-bottom:2px solid var(--gold)}
+.logo-deca{font-family:var(--serif);font-size:1.35rem;font-weight:400;color:var(--gold);letter-spacing:.5px;line-height:1;font-style:italic}
+.logo-sub{font-family:var(--sans);font-size:.43rem;letter-spacing:4px;text-transform:uppercase;color:rgba(196,149,58,.65);margin-top:1px}
+.nav-links{display:flex;list-style:none;flex:1}
+.nav-links li a{
+  font-family:var(--sans);font-size:.7rem;letter-spacing:.5px;font-weight:500;
+  text-transform:uppercase;color:rgba(240,235,225,.55);text-decoration:none;
+  padding:0 1.1rem;height:68px;display:flex;align-items:center;
+  transition:color .2s,background .2s;border-right:1px solid rgba(255,255,255,.06);
+}
+.nav-links li a:hover,.nav-links li a.active{color:var(--gold);background:rgba(196,149,58,.07)}
+.nav-cta{
+  display:flex;align-items:center;padding:0 1.8rem;
+  background:var(--gold);color:var(--ink);font-family:var(--sans);
+  font-size:.7rem;letter-spacing:.5px;font-weight:600;text-transform:uppercase;
+  text-decoration:none;transition:background .2s;white-space:nowrap;border-left:none;flex-shrink:0;
+}
+.nav-cta:hover{background:var(--gold-lt)}
+.hamburger{display:none;align-items:center;justify-content:center;width:68px;border-left:1px solid rgba(255,255,255,.08);cursor:pointer;background:none;border-top:none;border-right:none;border-bottom:none;flex-direction:column;gap:5px;flex-shrink:0}
+.hamburger span{width:20px;height:1.5px;background:var(--stone);display:block;transition:all .3s}
+
+/* ── SHARED ──────────────────────────────────────────────────────────────── */
+.page-wrap{padding-top:68px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 3rem}
+.eyebrow{font-family:var(--sans);font-size:.68rem;letter-spacing:3px;font-weight:500;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:22px;height:1.5px;background:var(--gold)}
+.gold-line{width:36px;height:3px;background:var(--gold);margin:1rem 0}
+.body-lg{font-size:1rem;line-height:1.8;color:var(--brown);font-weight:300}
+.body-md{font-size:.9rem;line-height:1.8;color:var(--mid);font-weight:300}
+
+/* Buttons */
+.btn-ink{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--stone);padding:13px 28px;font-size:.72rem;letter-spacing:.5px;font-weight:600;text-transform:uppercase;font-family:var(--sans);text-decoration:none;transition:all .25s;border:none;cursor:pointer}
+.btn-ink:hover{background:var(--gold);color:var(--ink)}
+.btn-gold{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--ink);padding:13px 28px;font-size:.72rem;letter-spacing:.5px;font-weight:600;text-transform:uppercase;font-family:var(--sans);text-decoration:none;transition:all .25s;border:none;cursor:pointer}
+.btn-gold:hover{background:var(--gold-lt)}
+.btn-ghost-stone{display:inline-flex;align-items:center;gap:10px;border:1.5px solid rgba(240,235,225,.3);color:rgba(240,235,225,.8);padding:12px 28px;font-size:.72rem;letter-spacing:.5px;font-weight:600;text-transform:uppercase;font-family:var(--sans);text-decoration:none;transition:all .25s;cursor:pointer;background:transparent}
+.btn-ghost-stone:hover{border-color:var(--gold);color:var(--gold)}
+.badge-ink{font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;padding:6px 13px;background:var(--ink);color:var(--gold);font-family:var(--sans);font-weight:500;white-space:nowrap}
+.tag{font-size:.62rem;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border:1.5px solid currentColor;font-family:var(--sans);font-weight:500}
+
+/* Display type */
+.d-xl{font-family:var(--display);font-size:clamp(5rem,10vw,10rem);line-height:.9;letter-spacing:1px;text-transform:uppercase}
+.d-lg{font-family:var(--display);font-size:clamp(3.5rem,7vw,7.5rem);line-height:.9;letter-spacing:1px;text-transform:uppercase}
+.d-md{font-family:var(--display);font-size:clamp(2.8rem,5vw,5.5rem);line-height:.92;letter-spacing:1px;text-transform:uppercase}
+.d-sm{font-family:var(--display);font-size:clamp(2rem,3.5vw,3.5rem);line-height:.95;letter-spacing:1px;text-transform:uppercase}
+.gold{color:var(--gold)}
+
+/* Reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.rv.on{opacity:1;transform:none}
+.rv-l{opacity:0;transform:translateX(-28px);transition:opacity .65s ease,transform .65s ease}
+.rv-l.on{opacity:1;transform:none}
+.rv-r{opacity:0;transform:translateX(28px);transition:opacity .65s ease,transform .65s ease}
+.rv-r.on{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* Footer */
+footer{background:var(--ink);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:2rem;padding:2.5rem 3rem;border-top:2px solid var(--gold)}
+.ft-logo{background:#000;padding:6px 14px 5px;border-bottom:2px solid var(--gold);display:inline-flex;flex-direction:column}
+.ft-deca{font-family:var(--serif);font-size:1.3rem;color:var(--gold);font-style:italic}
+.ft-sub{font-family:var(--sans);font-size:.42rem;letter-spacing:4px;text-transform:uppercase;color:rgba(196,149,58,.6)}
+.ft-links{display:flex;justify-content:center;flex-wrap:wrap}
+.ft-links a{font-size:.68rem;letter-spacing:.5px;text-transform:uppercase;color:rgba(240,235,225,.35);text-decoration:none;padding:.3rem .8rem;transition:color .2s;font-family:var(--sans);font-weight:500}
+.ft-links a:hover{color:var(--gold)}
+.ft-copy{font-size:.66rem;color:rgba(240,235,225,.25);text-align:right;line-height:1.7}
+
+/* Mobile */
+@media(max-width:900px){
+  .nav-links{display:none;position:fixed;top:68px;left:0;right:0;flex-direction:column;background:var(--ink-2);z-index:999}
+  .nav-links.open{display:flex}
+  .nav-links li a{border-right:none;border-bottom:1px solid rgba(255,255,255,.06);height:auto;padding:1rem 1.5rem}
+  .nav-cta{display:none}
+  .hamburger{display:flex}
+  .wrap{padding:0 1.5rem}
+  footer{grid-template-columns:1fr;text-align:center;padding:2rem 1.5rem;gap:1.2rem}
+  .ft-copy{text-align:center}
+}
+
+.ph{background:var(--ink);padding:6rem 0 5rem;position:relative;overflow:hidden}
+.ph::after{content:'NDIS';font-family:var(--display);font-size:18rem;color:rgba(255,255,255,.02);position:absolute;right:-1rem;top:50%;transform:translateY(-50%);pointer-events:none;letter-spacing:-4px;line-height:1}
+.ph h1{color:var(--stone)}.ph h1 .gold{color:var(--gold)}
+.ph-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+.ph-lead{font-size:.95rem;color:rgba(240,235,225,.5);font-weight:300;line-height:1.75}
+.vals{padding:5.5rem 0;background:var(--white)}
+.vals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--stone-2);margin-top:3rem}
+.val{background:var(--white);padding:2.5rem;border-top:3px solid var(--gold);transition:background .3s}
+.val:hover{background:var(--stone)}
+.val-icon{font-size:1.6rem;margin-bottom:1rem}
+.val h3{font-family:var(--display);font-size:1.4rem;text-transform:uppercase;color:var(--ink);margin-bottom:.6rem;letter-spacing:.5px}
+.val p{font-size:.87rem;line-height:1.76;color:var(--mid);font-weight:300}
+.caps{padding:5.5rem 0;background:var(--stone)}
+.caps-grid{display:grid;grid-template-columns:3fr 2fr;gap:4rem;align-items:start;margin-top:3rem}
+.cap-list{display:flex;flex-direction:column}
+.cap-item{display:flex;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--stone-2)}
+.cap-item:first-child{border-top:1px solid var(--stone-2)}
+.cap-dot{color:var(--gold);font-size:.65rem;margin-top:4px;flex-shrink:0}
+.cap-item p{font-size:.88rem;line-height:1.65;color:var(--brown);font-weight:300}
+.aside{display:flex;flex-direction:column;gap:1.2rem;position:sticky;top:84px}
+.aside-card{padding:2rem;background:var(--ink)}
+.aside-card h3{font-family:var(--display);font-size:1.2rem;text-transform:uppercase;color:var(--stone);margin-bottom:.7rem;letter-spacing:.5px}
+.aside-card p{font-size:.87rem;line-height:1.75;color:rgba(240,235,225,.45);font-weight:300;margin-bottom:1.2rem}
+.aside-card-gold{padding:2rem;background:var(--gold)}
+.aside-card-gold h3{font-family:var(--display);font-size:1.2rem;text-transform:uppercase;color:var(--ink);margin-bottom:.7rem;letter-spacing:.5px}
+.aside-card-gold p{font-size:.87rem;line-height:1.75;color:rgba(28,25,23,.7);font-weight:300}
+.commit{padding:4.5rem 0;background:var(--stone-2)}
+.commit-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--stone-3);margin-top:3rem}
+.cc{background:var(--stone-2);padding:2.5rem;transition:background .3s}
+.cc:hover{background:var(--white)}
+.cc h3{font-family:var(--display);font-size:1.3rem;text-transform:uppercase;color:var(--ink);margin-bottom:.6rem;letter-spacing:.5px}
+.cc p{font-size:.87rem;line-height:1.76;color:var(--mid);font-weight:300}
+@media(max-width:900px){
+  .ph-grid{grid-template-columns:1fr;gap:2rem}.ph::after{display:none}
+  .vals-grid,.commit-grid{grid-template-columns:1fr}
+  .caps-grid{grid-template-columns:1fr}.aside{position:static}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo-anchor">
+    <div class="logo-box">
+      <span class="logo-deca">deca</span>
+      <span class="logo-sub">Property Group</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" id="n0">About Us</a></li>
+    <li><a href="construction.html" id="n1">Construction</a></li>
+    <li><a href="fitouts.html" id="n2">Fit-Outs</a></li>
+    <li><a href="ndis.html" id="n3">NDIS</a></li>
+    <li><a href="contact.html" id="n4">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get a Quote</a>
+  <button class="hamburger" id="hbg"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-wrap">
+
+<div class="ph">
+  <div class="wrap">
+    <div class="ph-grid">
+      <div>
+        <div class="eyebrow rv" style="color:rgba(196,149,58,.7);margin-bottom:1.2rem">Division 03</div>
+        <h1 class="d-lg rv d1">NDIS<br/><span class="gold">CONSTRUCTION</span></h1>
+      </div>
+      <div class="rv-r d2">
+        <p class="ph-lead">Building accessible, compliant spaces for NDIS participants — housing modifications, SDA new builds, and purpose-built facilities designed around real independence goals.</p>
+        <a href="contact.html" class="btn-gold" style="margin-top:2rem;display:inline-flex">Talk to Us</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="vals">
+  <div class="wrap">
+    <div class="eyebrow rv">Our Approach</div>
+    <h2 class="d-md rv d1" style="margin-top:.7rem">BUILT AROUND <span class="gold">PEOPLE.</span></h2>
+    <div class="vals-grid rv d2">
+      <div class="val"><div class="val-icon">♿</div><h3>Accessibility by Design</h3><p>We start with the participant's needs, not the building's constraints. Every project is designed around real people — their mobility, independence goals, and daily lived experience.</p></div>
+      <div class="val"><div class="val-icon">📋</div><h3>Standards Compliance</h3><p>Deep familiarity with NDIS Practice Standards, SDA design requirements, and NCC accessibility provisions. We build to meet them correctly — first time, every time.</p></div>
+      <div class="val"><div class="val-icon">🤝</div><h3>Participant-Centred</h3><p>We collaborate with participants, support coordinators, and plan managers throughout the entire project — not just at the brief. Clear communication at every stage.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="caps">
+  <div class="wrap">
+    <div class="eyebrow rv">What We Build</div>
+    <h2 class="d-md rv d1" style="margin-top:.7rem">OUR <span class="gold">CAPABILITIES</span></h2>
+    <div class="caps-grid">
+      <div class="cap-list rv-l">
+        <div class="cap-item"><span class="cap-dot">◆</span><p>Specialist Disability Accommodation (SDA) — new builds, conversions, and robust housing</p></div>
+        <div class="cap-item"><span class="cap-dot">◆</span><p>Accessible bathroom &amp; wet area modifications — roll-in showers, grab rails, adjustable fixtures</p></div>
+        <div class="cap-item"><span class="cap-dot">◆</span><p>Ramp construction, widened doorways, and threshold removal for wheelchair access</p></div>
+        <div class="cap-item"><span class="cap-dot">◆</span><p>Ceiling track hoist and mechanical lift system installation</p></div>
+        <div class="cap-item"><span class="cap-dot">◆</span><p>Kitchen modifications for wheelchair accessibility and independent living</p></div>
+        <div class="cap-item"><span class="cap-dot">◆</span><p>Sensory-friendly environments and low-stimulation design spaces</p></div>
+        <div class="cap-item"><span class="cap-dot">◆</span><p>Community facility and day program space construction</p></div>
+        <div class="cap-item"><span class="cap-dot">◆</span><p>Assistive technology integration — smart home and environmental controls</p></div>
+        <div class="cap-item"><span class="cap-dot">◆</span><p>Full compliance documentation aligned to NDIS Capital Supports funding</p></div>
+        <div class="cap-item"><span class="cap-dot">◆</span><p>Minor modifications through to full SDA-registered new builds</p></div>
+      </div>
+      <div class="aside rv-r">
+        <div class="aside-card">
+          <h3>Working with NDIS Funding</h3>
+          <p>Navigating NDIS Capital Supports for construction can be complex. Deca helps prepare quotes and documentation aligned to NDIS requirements — making the process clear for participants and families.</p>
+          <p>We work with registered NDIS providers, support coordinators, OTs, and directly with participants.</p>
+          <a href="contact.html" class="btn-gold" style="width:100%;justify-content:center">Get in Touch</a>
+        </div>
+        <div class="aside-card-gold">
+          <h3>Our Commitment</h3>
+          <p>We stay engaged through the build and follow up after handover. If something isn't right, we fix it. That's not just policy — it's how Tom runs every job.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="commit">
+  <div class="wrap">
+    <div class="eyebrow rv">Credentials</div>
+    <h2 class="d-md rv d1" style="margin-top:.7rem">LICENSED &amp; <span class="gold">EXPERIENCED</span></h2>
+    <div class="commit-grid rv d2">
+      <div class="cc"><h3>Licensed & Insured</h3><p>All works completed by licensed tradespeople with experience in accessible construction. QBCC licensed, fully insured, and compliant with all relevant state building codes.</p></div>
+      <div class="cc"><h3>Funding Expertise</h3><p>We understand NDIS funding categories, documentation requirements, and the plan manager relationship. We make the process clear and straightforward for participants and their families.</p></div>
+    </div>
+    <div style="margin-top:3rem;text-align:center" class="rv">
+      <a href="contact.html" class="btn-ink">Discuss Your NDIS Project</a>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="ft-logo"><span class="ft-deca">deca</span><span class="ft-sub">Property Group</span></div>
+  <nav class="ft-links">
+    <a href="index.html">About Us</a>
+    <a href="construction.html">Construction</a>
+    <a href="fitouts.html">Fit-Outs</a>
+    <a href="ndis.html">NDIS</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="ft-copy">© 2026 Deca Property Group<br/>QBCC Licensed · Gold Coast, QLD</div>
+</footer>
+
+</div>
+<script>
+(function(){
+  const p=location.pathname.split('/').pop()||'index.html';
+  const m={'index.html':'n0','construction.html':'n1','fitouts.html':'n2','ndis.html':'n3','contact.html':'n4'};
+  const el=document.getElementById(m[p]);if(el)el.classList.add('active');
+})();
+document.getElementById('hbg').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')}),{threshold:.08});
+document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
