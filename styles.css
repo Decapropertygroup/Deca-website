@@ -227,6 +227,14 @@ figure.shot figcaption{
   padding:.9rem 1.1rem;font-size:var(--t-caption);color:var(--muted);
   border-top:1px solid var(--line);margin-top:auto;
 }
+figure.shot figcaption strong{color:var(--ink)}
+/* A shot that links through to its case study. */
+.shot-link{display:block;text-decoration:none;color:inherit}
+.shot-link figure.shot{transition:border-color .22s,transform .22s,box-shadow .22s;height:100%}
+.shot-link:hover figure.shot{
+  border-color:var(--accent);transform:translateY(-3px);
+  box-shadow:0 10px 30px rgba(29,27,25,.09);
+}
 
 /* ── Forms ───────────────────────────────────────────────────────────────── */
 .field{margin-bottom:1.1rem}
