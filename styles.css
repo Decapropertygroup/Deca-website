@@ -279,12 +279,15 @@ footer.site-footer{background:var(--ink);color:var(--on-ink);padding:3.5rem 0 2r
 }
 
 /* ── Reveal on scroll ────────────────────────────────────────────────────── */
-.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
-.rv.on{opacity:1;transform:none}
+/* Gated behind html.js, which the inline script in each <head> sets. If the
+   script or site.js ever fails to load, every section stays visible rather
+   than the whole page rendering blank. Never write a bare `.rv{opacity:0}`. */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.js .rv.on{opacity:1;transform:none}
 .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .rv{opacity:1;transform:none;transition:none}
+  .js .rv{opacity:1;transform:none;transition:none}
   *{transition-duration:.01ms !important;animation-duration:.01ms !important}
 }
 
