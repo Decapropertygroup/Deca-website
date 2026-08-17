@@ -1,0 +1,323 @@
+/* ==========================================================================
+   Deca Property Group - shared stylesheet
+   House style: charcoal #1d1b19, accent orange #e8501a, warm off-white #f6f4f1,
+   white cards with 1px #e9e4de borders, Arial throughout.
+   Matches the Capability Statement, quotations and invoice masthead.
+   Every page loads this one file. Do not add per-page <style> blocks.
+   ========================================================================== */
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  /* Palette */
+  --ink:        #1d1b19;   /* charcoal, mastheads and footers */
+  --ink-2:      #2a2724;   /* raised charcoal, stat strips */
+  --ink-3:      #3a3733;   /* charcoal hairlines */
+  --paper:      #f6f4f1;   /* warm off-white page background */
+  --card:       #ffffff;   /* card surface */
+  --line:       #e9e4de;   /* card border */
+  --accent:     #e8501a;   /* Deca orange */
+  --accent-dk:  #c8410f;   /* orange, hover */
+  --body:       #4a4642;   /* body copy on light */
+  --muted:      #7a736c;   /* secondary copy on light */
+  --on-ink:     #f6f4f1;   /* copy on charcoal */
+  --on-ink-mut: rgba(246,244,241,.62);
+
+  /* Type scale - one size per role, web translation of the print scale */
+  --t-display:  clamp(2.6rem, 6vw, 5rem);
+  --t-h1:       clamp(2.2rem, 4.6vw, 3.6rem);
+  --t-h2:       clamp(1.8rem, 3.4vw, 2.75rem);
+  --t-h3:       1.3rem;
+  --t-figure:   2.5rem;
+  --t-lead:     1.15rem;
+  --t-body:     1rem;
+  --t-caption:  .875rem;
+  --t-label:    .75rem;
+
+  --radius:     14px;
+  --radius-lg:  18px;
+  --shadow:     0 1px 2px rgba(29,27,25,.04), 0 8px 24px rgba(29,27,25,.05);
+  --nav-h:      74px;
+}
+
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  background:var(--paper);color:var(--body);
+  font-size:var(--t-body);line-height:1.7;
+  overflow-x:hidden;
+}
+/* height:auto is required: width/height attributes on <img> otherwise fix the
+   used height and the photo renders stretched. */
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+::selection{background:var(--accent);color:#fff}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* ── Layout ──────────────────────────────────────────────────────────────── */
+.wrap{max-width:1200px;margin:0 auto;padding:0 2rem}
+.wrap-narrow{max-width:860px;margin:0 auto;padding:0 2rem}
+.page-wrap{padding-top:var(--nav-h)}
+.section{padding:5.5rem 0}
+.section-tight{padding:3.5rem 0}
+.section-ink{background:var(--ink);color:var(--on-ink)}
+
+/* ── Nav ─────────────────────────────────────────────────────────────────── */
+nav.site-nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:stretch;height:var(--nav-h);
+  background:var(--ink);
+}
+.logo-anchor{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 1.6rem;text-decoration:none;flex-shrink:0;
+  border-right:1px solid var(--ink-3);
+}
+.logo-mark{
+  font-size:1.35rem;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--on-ink);line-height:1;
+}
+.logo-sub{
+  font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--accent);margin-top:5px;font-weight:700;
+}
+.nav-links{display:flex;list-style:none;flex:1;align-items:stretch}
+.nav-links a{
+  display:flex;align-items:center;padding:0 1.05rem;height:100%;
+  font-size:.76rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--on-ink-mut);text-decoration:none;
+  transition:color .2s,box-shadow .2s;white-space:nowrap;
+}
+.nav-links a:hover{color:var(--on-ink)}
+.nav-links a.active{color:#fff;box-shadow:inset 0 -3px 0 var(--accent)}
+.nav-cta{
+  display:flex;align-items:center;padding:0 1.6rem;flex-shrink:0;
+  background:var(--accent);color:#fff;text-decoration:none;
+  font-size:.76rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  transition:background .2s;white-space:nowrap;
+}
+.nav-cta:hover{background:var(--accent-dk)}
+.hamburger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:var(--nav-h);border:none;background:none;cursor:pointer;flex-shrink:0;
+  border-left:1px solid var(--ink-3);
+}
+.hamburger span{width:20px;height:2px;background:var(--on-ink);margin:0 auto;transition:.3s}
+
+/* ── Type helpers ────────────────────────────────────────────────────────── */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:var(--t-label);font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--accent);
+}
+.eyebrow::before{content:'';width:20px;height:2px;background:var(--accent);flex-shrink:0}
+.eyebrow-plain{
+  font-size:var(--t-label);font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--accent);
+}
+.display{font-size:var(--t-display);line-height:1.02;letter-spacing:-.02em;font-weight:700;color:var(--ink)}
+h1,.h1{font-size:var(--t-h1);line-height:1.06;letter-spacing:-.02em;font-weight:700;color:var(--ink)}
+h2,.h2{font-size:var(--t-h2);line-height:1.12;letter-spacing:-.015em;font-weight:700;color:var(--ink)}
+h3,.h3{font-size:var(--t-h3);line-height:1.3;font-weight:700;color:var(--ink)}
+.on-ink,.on-ink h1,.on-ink h2,.on-ink h3{color:var(--on-ink)}
+.accent{color:var(--accent)}
+.lead{font-size:var(--t-lead);line-height:1.72;color:var(--body)}
+.muted{color:var(--muted)}
+.caption{font-size:var(--t-caption);line-height:1.6;color:var(--muted)}
+.rule{width:44px;height:3px;background:var(--accent);margin:1.1rem 0;border-radius:2px}
+.stack>*+*{margin-top:1rem}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:14px 26px;border-radius:9px;border:1.5px solid transparent;
+  font-family:inherit;font-size:.8rem;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;text-decoration:none;cursor:pointer;
+  transition:background .2s,color .2s,border-color .2s,transform .15s;
+}
+.btn:active{transform:translateY(1px)}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:var(--accent-dk)}
+.btn-ink{background:var(--ink);color:var(--on-ink)}
+.btn-ink:hover{background:var(--accent)}
+.btn-outline{border-color:var(--line);background:var(--card);color:var(--ink)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.btn-ghost{border-color:rgba(246,244,241,.28);color:var(--on-ink);background:transparent}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ── Cards & surfaces ────────────────────────────────────────────────────── */
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:2rem;box-shadow:var(--shadow);
+}
+.card-link{display:block;text-decoration:none;color:inherit;transition:border-color .22s,transform .22s,box-shadow .22s}
+.card-link:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 10px 30px rgba(29,27,25,.09)}
+.grid{display:grid;gap:1.25rem}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+
+/* Two-column splits. Never set grid-template-columns inline: the mobile
+   collapse below is a media query and inline styles would beat it. */
+.split{display:grid;gap:3.5rem;align-items:center}
+.split-hero{grid-template-columns:1.05fr .95fr}
+.split-even{grid-template-columns:1fr 1fr}
+.split-wide{grid-template-columns:1fr 1.15fr}
+.split-head{grid-template-columns:1fr 1fr;gap:3rem;align-items:end}
+
+.card-index{
+  font-size:.72rem;font-weight:700;letter-spacing:.16em;color:var(--accent);
+  display:block;margin-bottom:.9rem;
+}
+.card p{color:var(--muted);font-size:.98rem}
+.card h3{margin-bottom:.55rem}
+.more{
+  display:inline-flex;align-items:center;gap:7px;margin-top:1.1rem;
+  font-size:.76rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);transition:gap .2s;
+}
+.card-link:hover .more{gap:12px}
+
+/* Tags & badges */
+.tag-row{display:flex;gap:8px;flex-wrap:wrap}
+.tag{
+  font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:6px 12px;border-radius:999px;border:1px solid var(--line);
+  color:var(--muted);background:var(--card);
+}
+.tag-ink{background:rgba(246,244,241,.07);border-color:var(--ink-3);color:var(--on-ink-mut)}
+.tag-accent{background:rgba(232,80,26,.09);border-color:rgba(232,80,26,.28);color:var(--accent)}
+
+/* Checklist */
+.checks{list-style:none}
+.checks li{
+  display:flex;gap:.85rem;align-items:flex-start;
+  padding:.85rem 0;border-bottom:1px solid var(--line);
+}
+.checks li:first-child{border-top:1px solid var(--line)}
+.checks li::before{
+  content:'';flex-shrink:0;width:7px;height:7px;margin-top:.62rem;
+  background:var(--accent);border-radius:2px;
+}
+.on-ink .checks li{border-color:var(--ink-3)}
+
+/* Stat strip */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);background:var(--ink-2);border-radius:var(--radius);overflow:hidden}
+.stat{padding:1.5rem 1.4rem;border-right:1px solid var(--ink-3)}
+.stat:last-child{border-right:none}
+.stat-n{font-size:var(--t-figure);font-weight:700;color:var(--accent);line-height:1;letter-spacing:-.02em}
+.stat-l{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--on-ink-mut);margin-top:.5rem}
+
+/* ── Page header (interior pages) ────────────────────────────────────────── */
+.page-head{background:var(--ink);color:var(--on-ink);padding:4.5rem 0 4rem}
+.page-head h1{color:var(--on-ink);margin:1rem 0 0;max-width:16ch}
+.page-head .lead{color:var(--on-ink-mut);max-width:62ch;margin-top:1.2rem}
+
+/* ── Photo figures ───────────────────────────────────────────────────────── */
+figure.shot{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;
+}
+/* Fixed ratio keeps a gallery of mixed portrait and landscape shots on an even
+   grid. Without it the tiles go ragged and the captions stop lining up. */
+figure.shot img{width:100%;aspect-ratio:4/3;object-fit:cover}
+figure.shot figcaption{
+  padding:.9rem 1.1rem;font-size:var(--t-caption);color:var(--muted);
+  border-top:1px solid var(--line);margin-top:auto;
+}
+
+/* ── Forms ───────────────────────────────────────────────────────────────── */
+.field{margin-bottom:1.1rem}
+.field label{
+  display:block;font-size:var(--t-label);font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink);margin-bottom:.5rem;
+}
+.field input,.field select,.field textarea{
+  width:100%;font-family:inherit;font-size:1rem;color:var(--ink);
+  background:var(--paper);border:1px solid var(--line);border-radius:9px;
+  padding:13px 15px;transition:border-color .2s,background .2s;
+}
+.field textarea{min-height:130px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--accent);background:#fff;
+}
+.field input::placeholder,.field textarea::placeholder{color:#a9a29a}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:1.5rem}
+.contact-line{display:flex;gap:1rem;align-items:flex-start;padding:1rem 0;border-bottom:1px solid var(--line)}
+.contact-line:last-child{border-bottom:none}
+.contact-line dt{
+  font-size:var(--t-label);font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);width:5.5rem;flex-shrink:0;padding-top:.15rem;
+}
+.contact-line dd{font-size:1.02rem;color:var(--ink)}
+.contact-line dd a{text-decoration:none}
+.contact-line dd a:hover{color:var(--accent)}
+.form-ok{
+  display:none;margin-top:1.2rem;padding:1rem 1.2rem;border-radius:9px;
+  background:rgba(232,80,26,.08);border:1px solid rgba(232,80,26,.3);
+  color:var(--ink);font-size:.95rem;
+}
+.form-ok.show{display:block}
+@media(max-width:680px){.field-row{grid-template-columns:1fr}}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+footer.site-footer{background:var(--ink);color:var(--on-ink);padding:3.5rem 0 2rem;border-top:3px solid var(--accent)}
+.ft-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:3rem;align-items:start}
+.ft-mark{font-size:1.3rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--on-ink);line-height:1}
+.ft-sub{font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-top:5px;font-weight:700}
+.ft-cred{font-size:.78rem;letter-spacing:.06em;color:var(--on-ink-mut);margin-top:1.2rem}
+.ft-h{font-size:var(--t-label);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+.ft-col a,.ft-col p{display:block;font-size:.9rem;color:var(--on-ink-mut);text-decoration:none;padding:.28rem 0;transition:color .2s}
+.ft-col a:hover{color:var(--accent)}
+.ft-base{
+  margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--ink-3);
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  font-size:.8rem;color:rgba(246,244,241,.4);
+}
+
+/* ── Reveal on scroll ────────────────────────────────────────────────────── */
+/* Gated behind html.js, which the inline script in each <head> sets. If the
+   script or site.js ever fails to load, every section stays visible rather
+   than the whole page rendering blank. Never write a bare `.rv{opacity:0}`. */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.js .rv.on{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .rv{opacity:1;transform:none;transition:none}
+  *{transition-duration:.01ms !important;animation-duration:.01ms !important}
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media(max-width:1100px){
+  .nav-links a{padding:0 .8rem;font-size:.72rem}
+}
+@media(max-width:980px){
+  .nav-links{
+    display:none;position:fixed;top:var(--nav-h);left:0;right:0;
+    flex-direction:column;background:var(--ink-2);
+    border-bottom:3px solid var(--accent);max-height:calc(100vh - var(--nav-h));overflow-y:auto;
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{height:auto;padding:1.05rem 1.5rem;border-bottom:1px solid var(--ink-3);font-size:.85rem}
+  .nav-links a.active{box-shadow:inset 3px 0 0 var(--accent)}
+  .nav-cta{display:none}
+  .hamburger{display:flex}
+  .grid-3,.grid-4{grid-template-columns:repeat(2,1fr)}
+  .section{padding:4rem 0}
+  .split,.split-hero,.split-even,.split-wide,.split-head{grid-template-columns:1fr;gap:2.5rem;align-items:start}
+}
+@media(max-width:680px){
+  .wrap,.wrap-narrow{padding:0 1.25rem}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .stat{border-right:none;border-bottom:1px solid var(--ink-3)}
+  .stat:last-child{border-bottom:none}
+  .ft-grid{grid-template-columns:1fr;gap:2rem}
+  .card{padding:1.5rem}
+  .section{padding:3rem 0}
+  .page-head{padding:3rem 0 2.5rem}
+}
