@@ -152,14 +152,14 @@
           <p class="caption"><strong>Nothing happens next unless you want it to.</strong> Nobody will call you, and the estimate above is yours to use as it stands. If you want it turned into a fixed written price, send it over and we will come back on it.</p>
           <div class="btn-row" style="margin-top:1.1rem">
             <button type="button" class="btn btn-accent" id="wantQuote">Send us this estimate &rarr;</button>
-            <a href="tel:0428901108" class="btn btn-outline">Or call 0428 901 108</a>
+            <a href="tel:+61755710997" class="btn btn-outline">Or call 07 5571 0997</a>
           </div>
         </div>
         <div class="form-ok" id="estAsked" style="margin-top:1.5rem">
           <p style="margin-bottom:.9rem"><strong>Your email should have opened with this estimate already written into it.</strong> Send it and we will come back with a fixed written price. If nothing opened, use whichever of these suits.</p>
           <div class="btn-row">
             <a class="btn btn-accent" id="mailtoLink" href="mailto:admin@decapropertygroup.com">Email admin@decapropertygroup.com</a>
-            <a class="btn btn-outline" href="tel:0428901108">Call 0428 901 108</a>
+            <a class="btn btn-outline" href="tel:+61755710997">Call 07 5571 0997</a>
           </div>
         </div>
       </div>
@@ -212,7 +212,7 @@
         <a href="projects.html">Projects</a>
         <a href="contact.html">Contact</a>
         <a href="mailto:admin@decapropertygroup.com">admin@decapropertygroup.com</a>
-        <a href="tel:0428901108">0428 901 108</a>
+        <a href="tel:+61755710997">07 5571 0997</a>
       </div>
     </div>
     <div class="ft-base">
@@ -270,7 +270,7 @@
     .then(function(d){
       btn.disabled = false;
       btn.innerHTML = "Get my estimate &rarr;";
-      if (!d.ok) return fail(d.error || "Something went wrong. Please call 0428 901 108.");
+      if (!d.ok) return fail(d.error || "Something went wrong. Please call 07 5571 0997.");
       lastPayload = payload; lastResult = d;
       render(d);
       sendLead(payload, d, false);
@@ -278,7 +278,7 @@
     .catch(function(){
       btn.disabled = false;
       btn.innerHTML = "Get my estimate &rarr;";
-      fail("We could not reach the estimator just then. Please try again, or call 0428 901 108.");
+      fail("We could not reach the estimator just then. Please try again, or call 07 5571 0997.");
     });
   });
 
