@@ -360,42 +360,44 @@
         hour:"numeric", minute:"2-digit" }) + " Brisbane time";
     } catch (e) { when = new Date().toString(); }
 
-    /* The subject has to work as a phone notification: what kind of enquiry, who,
-       how big, what the work is and where, without opening anything. */
+    /* Formshield, Formspree's spam filter, is on and cannot be tuned on this plan.
+       It was flagging every submission, so this deliberately looks like an ordinary
+       contact form: conventional field names, sentence case, one readable message,
+       and no numeric prefixes or shouting. */
+    var lines = [
+      wantsQuote
+        ? "They asked for a fixed quotation. Worth coming back to within a business day."
+        : "They ran the numbers on the website and did not ask to be contacted.",
+      "",
+      "Contact",
+      "  Name: " + ($("name").value.trim() || "not given"),
+      "  Company: " + ($("company").value.trim() || "not given"),
+      "  Email: " + $("email").value.trim(),
+      "  Phone: " + ($("phone").value.trim() || "not given"),
+      "  Job address: " + ($("site").value.trim() || "not given"),
+      "",
+      "The job they described",
+      "  " + use.charAt(0).toUpperCase() + use.slice(1) + ", " + region,
+      "  " + shape + ", " + p.height + " m high",
+      "  " + d.weeks + " weeks on hire",
+      "  Containment sheeting: " + (p.containment ? "yes" : "not required"),
+      "  " + d.tonnes + " tonnes, " + d.days + " working days on site, crew of " + d.crew,
+      "",
+      "The estimate they were shown"
+    ];
+    d.lines.forEach(function(l){ lines.push("  " + l.label + ": " + money(l.amount)); });
+    lines.push("  Total ex GST: " + money(d.subtotal));
+    lines.push("  Total inc GST: " + money(d.total));
+    lines.push("");
+    lines.push("Run at " + when);
+
     var body = new FormData();
-    body.append("_subject",
-      (wantsQuote ? "QUOTATION REQUESTED - " : "Estimate viewed - ") + who +
-      " - " + money(d.subtotal) + " - " + p.height + " m " + use + ", " + region);
-
-    body.append("01 what this is", wantsQuote
-      ? "THEY ASKED FOR A FIXED QUOTATION. Come back within one business day."
-      : "They ran the numbers and did not ask to be contacted. Nothing owed unless you want to chase it.");
-
-    body.append("02 who", [
-      $("name").value.trim() || "(no name)",
-      $("company").value.trim() || "(no company)",
-      $("email").value.trim(),
-      $("phone").value.trim() || "(no phone)",
-      "Job at: " + ($("site").value.trim() || "(no address given)")
-    ].join("\n"));
-
-    body.append("03 the job", [
-      use.charAt(0).toUpperCase() + use.slice(1) + ", " + region,
-      shape + ", " + p.height + " m high",
-      d.weeks + " weeks on hire",
-      "Containment sheeting: " + (p.containment ? "yes" : "not required"),
-      d.tonnes + " tonnes, " + d.days + " working days on site, crew of " + d.crew
-    ].join("\n"));
-
-    body.append("04 what we told them", d.lines.map(function(l){
-      return l.label + ": " + money(l.amount);
-    }).join("\n") + "\n---\nTotal ex GST: " + money(d.subtotal) +
-      "\nTotal inc GST: " + money(d.total));
-
-    body.append("05 when", when);
-
-    /* Formspree replies to this address, so keep the plain field. */
+    body.append("_subject", (wantsQuote ? "Quotation requested" : "Scaffold estimate")
+      + " from " + who + ", " + p.height + " m " + use + ", " + region);
+    body.append("name", $("name").value.trim());
     body.append("email", $("email").value.trim());
+    body.append("phone", $("phone").value.trim());
+    body.append("message", lines.join("\n"));
 
     fetch("https://formspree.io/f/mvzdgokj", { method:"POST", body: body, headers:{Accept:"application/json"} })
       .catch(function(){ /* the estimate is already on screen; nothing to tell the user */ });
