@@ -336,30 +336,67 @@
   /* Goes to the same Formspree box the contact form uses. The subject says
      whether this is somebody who merely looked or somebody who wants a price,
      so the two never sit in the inbox looking alike. */
+  var USE_LABEL = {
+    newbuild: "new build",
+    facade:   "facade repairs or repaint",
+    occupied: "occupied building"
+  };
+  var REGION_LABEL = {
+    "gold-coast": "Gold Coast", "brisbane": "Brisbane", "northern-nsw": "Northern NSW",
+    "sunshine-coast": "Sunshine Coast", "toowoomba": "Toowoomba", "other": "Elsewhere in QLD"
+  };
+
   function sendLead(p, d, wantsQuote){
-    var summary = d.lines.map(function(l){ return l.label + ": " + money(l.amount); }).join("\n");
+    var who = $("company").value.trim() || $("name").value.trim() || "no name given";
+    var use = USE_LABEL[p.useCase] || p.useCase;
+    var region = REGION_LABEL[p.region] || p.region;
+    var shape = p.mode === "run"
+      ? p.runLength + " m elevation"
+      : p.length + " x " + p.width + " m, " + ({4:"all four sides",3:"three sides",2:"two sides",1:"one side"}[p.faces] || p.faces + " sides");
+    var when;
+    try {
+      when = new Date().toLocaleString("en-AU", { timeZone:"Australia/Brisbane",
+        weekday:"short", day:"numeric", month:"short", year:"numeric",
+        hour:"numeric", minute:"2-digit" }) + " Brisbane time";
+    } catch (e) { when = new Date().toString(); }
+
+    /* The subject has to work as a phone notification: what kind of enquiry, who,
+       how big, what the work is and where, without opening anything. */
     var body = new FormData();
-    body.append("_subject", (wantsQuote ? "QUOTATION REQUESTED - " : "Estimate viewed, no contact asked for - ")
-      + ($("company").value || $("name").value));
-    body.append("wants_quotation", wantsQuote ? "YES, they asked for a fixed quotation" : "no, they only ran the numbers");
-    body.append("name", $("name").value);
-    body.append("company", $("company").value);
-    body.append("email", $("email").value);
-    body.append("phone", $("phone").value);
-    body.append("site_address", $("site").value);
-    body.append("job", [
-      "Mode: " + p.mode,
-      p.mode === "run" ? "Elevation: " + p.runLength + " m"
-                       : "Building: " + p.length + " x " + p.width + " m, " + p.faces + " sides",
-      "Height: " + p.height + " m",
-      "Weeks: " + d.weeks,
-      "Use: " + p.useCase,
-      "Region: " + p.region,
-      "Containment: " + (p.containment ? "yes" : "no")
+    body.append("_subject",
+      (wantsQuote ? "QUOTATION REQUESTED - " : "Estimate viewed - ") + who +
+      " - " + money(d.subtotal) + " - " + p.height + " m " + use + ", " + region);
+
+    body.append("01 what this is", wantsQuote
+      ? "THEY ASKED FOR A FIXED QUOTATION. Come back within one business day."
+      : "They ran the numbers and did not ask to be contacted. Nothing owed unless you want to chase it.");
+
+    body.append("02 who", [
+      $("name").value.trim() || "(no name)",
+      $("company").value.trim() || "(no company)",
+      $("email").value.trim(),
+      $("phone").value.trim() || "(no phone)",
+      "Job at: " + ($("site").value.trim() || "(no address given)")
     ].join("\n"));
-    body.append("estimate", summary + "\nSubtotal: " + money(d.subtotal) +
-      "\nTotal inc GST: " + money(d.total) +
-      "\n" + d.tonnes + " t, " + d.days + " days, crew of " + d.crew);
+
+    body.append("03 the job", [
+      use.charAt(0).toUpperCase() + use.slice(1) + ", " + region,
+      shape + ", " + p.height + " m high",
+      d.weeks + " weeks on hire",
+      "Containment sheeting: " + (p.containment ? "yes" : "not required"),
+      d.tonnes + " tonnes, " + d.days + " working days on site, crew of " + d.crew
+    ].join("\n"));
+
+    body.append("04 what we told them", d.lines.map(function(l){
+      return l.label + ": " + money(l.amount);
+    }).join("\n") + "\n---\nTotal ex GST: " + money(d.subtotal) +
+      "\nTotal inc GST: " + money(d.total));
+
+    body.append("05 when", when);
+
+    /* Formspree replies to this address, so keep the plain field. */
+    body.append("email", $("email").value.trim());
+
     fetch("https://formspree.io/f/mvzdgokj", { method:"POST", body: body, headers:{Accept:"application/json"} })
       .catch(function(){ /* the estimate is already on screen; nothing to tell the user */ });
   }
