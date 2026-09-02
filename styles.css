@@ -329,3 +329,49 @@ footer.site-footer{background:var(--ink);color:var(--on-ink);padding:3.5rem 0 2r
   .section{padding:3rem 0}
   .page-head{padding:3rem 0 2.5rem}
 }
+
+/* ── Scaffold estimator ──────────────────────────────────────────────────────
+   scaffold-estimate.html only. Reuses .field, .card, .btn throughout; these are
+   the few pieces the estimate result needs that nothing else on the site has. */
+.est-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
+#estForm .eyebrow-plain{display:block;margin-bottom:1.1rem}
+#estForm .eyebrow-plain+*{margin-top:0}
+#estForm p.eyebrow-plain:not(:first-child){margin-top:1.5rem}
+.est-out{display:none}
+.est-out.show{display:block}
+.est-head{
+  background:var(--ink);color:var(--on-ink);border-radius:var(--radius) var(--radius) 0 0;
+  padding:1.5rem 2rem;
+}
+.est-head .est-total{font-size:var(--t-figure);font-weight:700;color:#fff;line-height:1.1}
+.est-head .caption{color:var(--on-ink-mut)}
+.est-body{
+  background:var(--card);border:1px solid var(--line);border-top:none;
+  border-radius:0 0 var(--radius) var(--radius);padding:.5rem 2rem 1.75rem;
+}
+.est-line{display:flex;gap:1rem;justify-content:space-between;align-items:baseline;
+  padding:1rem 0;border-bottom:1px solid var(--line)}
+.est-line:last-of-type{border-bottom:none}
+.est-line dt{font-weight:700;color:var(--ink)}
+.est-line dd{font-weight:700;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.est-line .caption{display:block;font-weight:400;color:var(--muted);margin-top:.15rem}
+.est-sum{display:flex;justify-content:space-between;gap:1rem;padding:.45rem 0;font-variant-numeric:tabular-nums}
+.est-sum.est-final{border-top:2px solid var(--ink);margin-top:.6rem;padding-top:.9rem;
+  font-size:var(--t-h3);font-weight:700;color:var(--ink)}
+.est-note{
+  background:var(--paper);border-left:3px solid var(--accent);border-radius:0 9px 9px 0;
+  padding:.85rem 1.1rem;margin-top:.9rem;font-size:var(--t-caption);color:var(--body);
+}
+.est-err{
+  display:none;margin-top:1.2rem;padding:1rem 1.2rem;border-radius:9px;
+  background:rgba(200,65,15,.08);border:1px solid rgba(200,65,15,.35);color:var(--ink);
+}
+.est-err.show{display:block}
+.rate-card{display:grid;grid-template-columns:1fr auto;gap:.55rem 1.5rem;
+  font-size:var(--t-caption);font-variant-numeric:tabular-nums}
+.rate-card dt{color:var(--body)}
+.rate-card dd{font-weight:700;color:var(--ink);text-align:right}
+@media(max-width:620px){
+  .est-grid{grid-template-columns:1fr}
+  .est-head,.est-body{padding-left:1.4rem;padding-right:1.4rem}
+}
