@@ -129,13 +129,13 @@ function heightFactor(height) {
 
 function estimate(input) {
   if (!modelReady())
-    return { ok: false, error: 'The estimator is being configured just now. Please call us on 0428 901 108 and we will price it straight away.' };
+    return { ok: false, error: 'The estimator is being configured just now. Please call us on 07 5571 0997 and we will price it straight away.' };
 
   const rawHeight = Number(input.height);
   if (!isFinite(rawHeight) || rawHeight < 2)
     return { ok: false, error: 'Enter the height to the top of the work, in metres.' };
   if (rawHeight > 120)
-    return { ok: false, error: 'Over 120 m is outside what we price online. Please call us on 0428 901 108.' };
+    return { ok: false, error: 'Over 120 m is outside what we price online. Please call us on 07 5571 0997.' };
   const height = rawHeight;
   const weeks = Math.max(SELL.minHireWeeks, Math.round(Number(input.weeks) || 4));
   /* An unrecognised access type falls to the slowest rate, never the fastest. */
