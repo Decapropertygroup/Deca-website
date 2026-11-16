@@ -99,7 +99,7 @@ nav.site-nav{
 .nav-links{display:flex;list-style:none;flex:1;align-items:stretch}
 .nav-links a{
   display:flex;align-items:center;padding:0 1.05rem;height:100%;
-  font-size:.76rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  font-size:.92rem;font-weight:600;letter-spacing:0;text-transform:none;
   color:var(--on-ink-mut);text-decoration:none;
   transition:color .2s,box-shadow .2s;white-space:nowrap;
 }
@@ -108,7 +108,7 @@ nav.site-nav{
 .nav-cta{
   display:flex;align-items:center;padding:0 1.6rem;flex-shrink:0;
   background:var(--accent);color:#fff;text-decoration:none;
-  font-size:.76rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  font-size:.95rem;font-weight:600;letter-spacing:0;text-transform:none;
   transition:background .2s;white-space:nowrap;
 }
 .nav-cta:hover{background:var(--accent-dk)}
@@ -139,7 +139,7 @@ h3,.h3{font-size:var(--t-h3);line-height:1.3;font-weight:700;color:var(--ink)}
 .lead{font-size:var(--t-lead);line-height:1.72;color:var(--body)}
 .muted{color:var(--muted)}
 .caption{font-size:var(--t-caption);line-height:1.6;color:var(--muted)}
-.rule{width:44px;height:3px;background:var(--accent);margin:1.1rem 0;border-radius:2px}
+.rule{display:none}
 .stack>*+*{margin-top:1rem}
 
 /* ── Buttons ─────────────────────────────────────────────────────────────── */
@@ -182,27 +182,25 @@ h3,.h3{font-size:var(--t-h3);line-height:1.3;font-weight:700;color:var(--ink)}
 .split-head{grid-template-columns:1fr 1fr;gap:3rem;align-items:end}
 
 .card-index{
-  font-size:.72rem;font-weight:700;letter-spacing:.16em;color:var(--accent);
-  display:block;margin-bottom:.9rem;
+  display:none;
 }
 .card p{color:var(--muted);font-size:.98rem}
 .card h3{margin-bottom:.55rem}
 .more{
   display:inline-flex;align-items:center;gap:7px;margin-top:1.1rem;
-  font-size:.76rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--accent);transition:gap .2s;
+  font-size:.95rem;font-weight:600;letter-spacing:0;text-transform:none;
+  color:var(--ink);text-decoration:underline;text-underline-offset:4px;transition:gap .2s;
 }
 .card-link:hover .more{gap:12px}
 
 /* Tags & badges */
-.tag-row{display:flex;gap:8px;flex-wrap:wrap}
-.tag{
-  font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  padding:6px 12px;border-radius:999px;border:1px solid var(--line);
-  color:var(--muted);background:var(--card);
-}
-.tag-ink{background:rgba(246,244,241,.07);border-color:var(--ink-3);color:var(--on-ink-mut)}
-.tag-accent{background:rgba(232,80,26,.09);border-color:rgba(232,80,26,.28);color:var(--accent)}
+.tag-row{display:flex;gap:0;flex-wrap:wrap;font-family:var(--f-mono);font-size:.8rem}
+/* Tags read as a line of job data, not as pills */
+.tag{color:var(--muted)}
+.tag + .tag::before{content:'\00a0\00b7\00a0';color:var(--muted)}
+.tag-ink{color:var(--on-ink-mut)}
+.tag-ink + .tag-ink::before{color:var(--on-ink-mut)}
+.tag-accent{color:var(--accent)}
 
 /* Checklist */
 .checks{list-style:none}
@@ -211,10 +209,7 @@ h3,.h3{font-size:var(--t-h3);line-height:1.3;font-weight:700;color:var(--ink)}
   padding:.85rem 0;border-bottom:1px solid var(--line);
 }
 .checks li:first-child{border-top:1px solid var(--line)}
-.checks li::before{
-  content:'';flex-shrink:0;width:7px;height:7px;margin-top:.62rem;
-  background:var(--accent);border-radius:2px;
-}
+.checks li::before{content:none}
 .on-ink .checks li{border-color:var(--ink-3)}
 
 /* Stat strip */
@@ -226,7 +221,7 @@ h3,.h3{font-size:var(--t-h3);line-height:1.3;font-weight:700;color:var(--ink)}
 
 /* ── Page header (interior pages) ────────────────────────────────────────── */
 .page-head{background:var(--ink);color:var(--on-ink);padding:4.5rem 0 4rem}
-.page-head h1{color:var(--on-ink);margin:1rem 0 0;max-width:16ch}
+.page-head h1{color:var(--on-ink);margin:0;max-width:22ch}
 .page-head .lead{color:var(--on-ink-mut);max-width:62ch;margin-top:1.2rem}
 
 /* ── Photo figures ───────────────────────────────────────────────────────── */
@@ -271,8 +266,8 @@ figure.shot figcaption strong{color:var(--ink)}
 .contact-line{display:flex;gap:1rem;align-items:flex-start;padding:1rem 0;border-bottom:1px solid var(--line)}
 .contact-line:last-child{border-bottom:none}
 .contact-line dt{
-  font-size:var(--t-label);font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--accent);width:5.5rem;flex-shrink:0;padding-top:.15rem;
+  font-family:var(--f-mono);font-size:.8rem;font-weight:400;letter-spacing:0;text-transform:none;
+  color:var(--muted);width:5.5rem;flex-shrink:0;padding-top:.15rem;
 }
 .contact-line dd{font-size:1.02rem;color:var(--ink)}
 .contact-line dd a{text-decoration:none}
@@ -291,7 +286,7 @@ footer.site-footer{background:var(--ink);color:var(--on-ink);padding:3.5rem 0 2r
 .ft-mark{font-size:1.3rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--on-ink);line-height:1}
 .ft-sub{font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-top:5px;font-weight:700}
 .ft-cred{font-size:.78rem;letter-spacing:.06em;color:var(--on-ink-mut);margin-top:1.2rem}
-.ft-h{font-size:var(--t-label);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+.ft-h{font-size:.95rem;font-weight:600;letter-spacing:0;text-transform:none;color:var(--on-ink);margin-bottom:1rem}
 .ft-col a,.ft-col p{display:block;font-size:.9rem;color:var(--on-ink-mut);text-decoration:none;padding:.28rem 0;transition:color .2s}
 .ft-col a:hover{color:var(--accent)}
 .ft-base{
@@ -304,7 +299,8 @@ footer.site-footer{background:var(--ink);color:var(--on-ink);padding:3.5rem 0 2r
 /* Gated behind html.js, which the inline script in each <head> sets. If the
    script or site.js ever fails to load, every section stays visible rather
    than the whole page rendering blank. Never write a bare `.rv{opacity:0}`. */
-.js .rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+/* Scroll fade-ins switched off 16 Nov 2026: they read as a template and left headings blank while loading. */
+.js .rv{opacity:1;transform:none}
 .js .rv.on{opacity:1;transform:none}
 .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
 @media(prefers-reduced-motion:reduce){
@@ -435,9 +431,9 @@ footer.site-footer{background:var(--ink);color:var(--on-ink);padding:3.5rem 0 2r
 .hm-two{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
 .hm-two p{color:var(--on-ink-mut);font-size:1.08rem;margin-top:1.2rem;max-width:48ch}
 
-.hm-call{padding:5rem 0 6rem}
+.hm-call{padding:4rem 0 4.5rem}
 .hm-call-lead{font-size:1.2rem;color:var(--body)}
-.hm-phone{display:inline-block;font-family:var(--f-head);font-weight:800;font-size:clamp(3.2rem,11vw,8.5rem);
+.hm-phone{display:inline-block;font-family:var(--f-head);font-weight:800;font-size:clamp(2.2rem,4.6vw,3.4rem);
   line-height:1;color:var(--accent);text-decoration:none;margin-top:.4rem}
 .hm-phone:hover{color:var(--accent-dk)}
 .hm-call-sub{margin-top:1rem;color:var(--muted)}
@@ -453,3 +449,34 @@ footer.site-footer{background:var(--ink);color:var(--on-ink);padding:3.5rem 0 2r
   .hm-job-big img{height:auto;aspect-ratio:16/10;min-height:0}
   .hm-two{grid-template-columns:1fr;gap:2.5rem}
 }
+
+
+/* ── Template patterns retired 16 November 2026 ─────────────────────────────
+   Eyebrow labels are removed from the markup; this keeps any stragglers out. */
+.eyebrow,.eyebrow-plain{display:none}
+
+/* Shared closing block, the same on every page as the home page. */
+.call-block{padding:4rem 0 4.5rem}
+.call-block .lead-in{font-size:1.2rem;color:var(--body)}
+.call-block .phone{display:inline-block;font-family:var(--f-head);font-weight:800;font-size:clamp(2.2rem,4.6vw,3.4rem);
+  line-height:1;color:var(--accent);text-decoration:none;margin-top:.4rem}
+.call-block .phone:hover{color:var(--accent-dk)}
+.call-block .sub{margin-top:1rem;color:var(--muted)}
+.call-block .sub a{color:var(--ink);text-underline-offset:4px}
+
+/* Job sheet: the facts of a job in mono, in place of the old stat strip. */
+.jobsheet{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink)}
+.jobsheet div{padding:1.1rem 1.4rem 1.2rem 0;border-bottom:1px solid var(--line)}
+.jobsheet dt{font-family:var(--f-mono);font-size:.74rem;color:var(--muted)}
+.jobsheet dd{margin:.35rem 0 0;font-weight:600;color:var(--ink);line-height:1.4}
+@media (max-width:900px){.jobsheet{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.jobsheet{grid-template-columns:1fr}}
+
+/* Section headings inside the scaffold estimator form */
+.form-h{font-family:var(--f-body);font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:1rem}
+
+/* Space under headings now the orange rule is gone */
+h2 + p, h2 + .lead, h2 + ul, h2 + .checks, h2 + .grid, h2 + dl{margin-top:1.2rem}
+
+/* Form labels in sentence case, like the rest of the site */
+.field label{font-size:.9rem;font-weight:600;letter-spacing:0;text-transform:none}
